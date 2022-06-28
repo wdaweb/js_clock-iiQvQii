@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yen的時鐘</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="text">
+    <p id="today">
+    </p>
+    <p id="day"></p>
+  </div>
+  <div id="ball"></div>
+  <div id="clock">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second"></div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.2/dayjs.min.js'
+    integrity='sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=='
+    crossorigin='anonymous'></script>
+
+
+  <script>
+
+    const elHour = document.getElementById('hour')
+    const elMinute = document.getElementById('minute')
+    const elSecond = document.getElementById('second')
+    const ball = document.getElementById('ball')
+    const today = document.querySelector('#today')
+    const day = document.querySelector('#day')
+
+    setInterval(() => {
+      const date = new Date()
+      elHour.style.transform = `rotate(${date.getHours() * 30 - 90}deg)`
+      elMinute.style.transform = `rotate(${date.getMinutes() * 6 - 90}deg)`
+      ball.style.transform = `rotate(${date.getSeconds() * 6}deg)`
+      ball.style.filter = `hue-rotate(${date.getSeconds() * 30}deg)`
+
+    }, 1000)
+    today.innerText = `${dayjs().format('YYYY MM DD')}`
+    day.innerText = `${dayjs().format('dddd')}`
+
+  </script>
+</body>
+
+</html>
